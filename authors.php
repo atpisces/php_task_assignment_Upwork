@@ -11,13 +11,13 @@
 		$authorID = $_REQUEST["authorID"];
 
 		// Deleting an Author via API call
-		$deleteAuthor = apiCall("delete", "authors", "DELETE", $authorID);
+		$deleteAuthor = commonApiCall("delete", "authors", "DELETE", $authorID);
 		echo '<h2 style="color: green;" align="center">Author Deleted Successfully.</h2><hr />';
 	}
 
 	// Calling a common function placed in [functions.php] to get Authors List
 	$params = 'orderBy=id&direction=ASC&limit=12&page=1';
-	$authorsList = apiCall("list", "authors", "GET", $params);
+	$authorsList = commonApiCall("list", "authors", "GET", $params);
 ?>
 <!DOCTYPE html>
 <html>

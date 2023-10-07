@@ -18,35 +18,7 @@
 	    $book_format = $_POST["book_format"];
 	    $no_of_pages = $_POST["no_of_pages"];
 
-	    $api_url = 'https://candidate-testing.api.royal-apps.io/api/v2/books'; // API endpoint
-
-	    $data = array(
-	    	'author' => array(
-	    				'id' => $book_author
-	    			),
-	        'title' => $book_title,
-	        'release_date' => $book_date,
-	        'description' => $book_description,
-	        'isbn' => $book_isbn,
-	        'format' => $book_format,
-	        'number_of_pages' => (int)$no_of_pages
-	    );
-
-	    $ch = curl_init($api_url);
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	    curl_setopt($ch, CURLOPT_POST, true);
-	    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-	    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-	        'Content-Type: application/json',
-	        'Accept: application/json',
-	        'Authorization: Bearer bf9ed30f7a6835a9925c046731cfaca43eba4437f17735cb792901bddf813d7f91a2122face91429'
-	    ));
-
-	    $response = curl_exec($ch);
-
-	    curl_close($ch);
-
-	    $response_data = json_decode($response, true);
+	    $response_data = addNewBook($book_author, $book_title, $book_date, $book_description, $book_isbn, $book_format, $no_of_pages);
 
 	    if(isset($response_data["id"])){
 	    	echo '<h2 style="color: green;" align="center">New Book Added Successfully.</h2><hr />';
@@ -55,7 +27,7 @@
 
 	// Calling a common function placed in [functions.php] to get Authors List
 	$params = 'orderBy=id&direction=ASC&limit=12&page=1';
-	$authorsList = apiCall("list", "authors", "GET", $params);
+	$authorsList = commonApiCall("list", "authors", "GET", $params);
 ?>
 <!DOCTYPE html>
 <html>

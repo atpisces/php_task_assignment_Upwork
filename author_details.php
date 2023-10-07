@@ -12,7 +12,7 @@
 		$bookID = $_REQUEST["bookID"];
 
 		// Calling a common function placed in [functions.php] to delete Book 
-		$deleteBook = apiCall("delete", "books", "DELETE", $bookID);
+		$deleteBook = commonApiCall("delete", "books", "DELETE", $bookID);
 		echo '<h2 style="color: red;" align="center">Book Deleted Successfully.</h2><hr />';
 
 	}
@@ -21,7 +21,7 @@
 		$authorID = $_REQUEST["authorID"];
 
 		// Calling a common function placed in [functions.php] to get Author Details 
-		$authorDetails = apiCall("get_details", "authors", "GET", $authorID);
+		$authorDetails = commonApiCall("get_details", "authors", "GET", $authorID);
 	}
 
 ?>
